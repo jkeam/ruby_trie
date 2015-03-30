@@ -1,2 +1,5 @@
 .ruby-version
 .ruby-gemset
+.DS_Store
+ruby_trie-*.gem
+coverage

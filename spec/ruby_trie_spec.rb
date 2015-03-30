@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe RubyTrie::Trie do
   before do
-    @trie = RubyTrie::Trie.new
+    @trie = RubyTrie.new
   end
 
   describe "when asked to add" do
