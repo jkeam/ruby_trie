@@ -18,7 +18,8 @@ class RubyTrie
 
   # get the root and optionally create a new root if not found
   def get_root(value, options={})
-    subroot = @root.get_child value
+    sym = (value.is_a? Symbol) ? value : value.to_sym
+    subroot = @root.get_child sym
     if options[:create] && subroot.nil?
       sym = options[:sym]
       subroot = Node.new sym, nil
@@ -34,9 +35,6 @@ class RubyTrie
       letters.shift
       letters.each { |l| cur = cur.add(l) }
     end
-    
+
   end
 end
-
-
-
