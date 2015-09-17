@@ -14,6 +14,15 @@ To run the test suite just run `rake`
 To use:
 
 ```ruby
+# creates the trie
 @trie = RubyTrie.new
-@trie.add kitten
+
+# adds a word
+@trie.add 'kitten'
+
+# gets the node holding k
+k_node = @trie.get_node :k
+
+# gets the node holding i
+i_node = k_node.get_node :i
 ```

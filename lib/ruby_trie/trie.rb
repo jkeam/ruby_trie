@@ -20,9 +20,9 @@ class RubyTrie
     end
 
     # convenience method to get the first child immediately
-    def get_root(value)
+    def get_node(value)
       sym = (value.is_a? Symbol) ? value : value.to_sym
-      @root.get_child sym
+      @root.get_node sym
     end
 
     private

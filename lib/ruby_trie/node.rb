@@ -11,7 +11,7 @@ class RubyTrie
 
     # find node if it exists or create new node to hold it
     def add(value)
-      node = get_child value
+      node = get_node value
 
       # if node doesn't exist
       # add to correct place to cur node
@@ -23,7 +23,7 @@ class RubyTrie
     end
 
     # gets the node holding this value
-    def get_child(value) 
+    def get_node(value)
       sym = (value.is_a? Symbol) ? value : value.to_sym
       @children[sym]
     end
