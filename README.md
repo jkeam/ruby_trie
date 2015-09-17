@@ -9,3 +9,11 @@ Supports Ruby 2.2.2 and greater.
 
 ## Test
 To run the test suite just run `rake`
+
+## Usage
+To use:
+
+```ruby
+@trie = RubyTrie.new
+@trie.add kitten
+```

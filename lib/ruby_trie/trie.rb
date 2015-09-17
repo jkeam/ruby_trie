@@ -2,39 +2,38 @@ require 'ruby_trie/node'
 
 class RubyTrie
   class Trie
+    attr_reader :root
 
-  def initialize
-    @root = Node.new nil, nil
-  end
-
-  # add word and returns the root node containing that word
-  def add(word)
-    return if word.nil? || word.gsub(/\s+/, '') == ''
-    letters = word.split('')
-    subroot = get_root letters[0], {create: true, sym: letters[0].to_sym} 
-    add_letters_to_root letters, subroot 
-    subroot 
-  end
-
-  # get the root and optionally create a new root if not found
-  def get_root(value, options={})
-    sym = (value.is_a? Symbol) ? value : value.to_sym
-    subroot = @root.get_child sym
-    if options[:create] && subroot.nil?
-      sym = options[:sym]
-      subroot = Node.new sym, nil
-      @root.children[sym] = subroot 
+    # creates a new trie with a root node
+    def initialize
+      @root = Node.new nil, nil
     end
-    subroot
-  end
 
-  private 
-    # does the work of adding the letters to the created root
-    def add_letters_to_root(letters, subroot)
-      cur = subroot 
-      letters.shift
-      letters.each { |l| cur = cur.add(l) }
+    # adds word and returns itself to allow chaining
+    def add(word)
+      return if word.nil? || word.gsub(/\s+/, '') == ''
+      root = @root
+      letters = word.split('').each do |l|
+        root = get_sub_root root, l
+      end
+      self
     end
+
+    # convenience method to get the first child immediately
+    def get_root(value)
+      sym = (value.is_a? Symbol) ? value : value.to_sym
+      @root.get_child sym
+    end
+
+    private
+
+      # when you pass in a root, this will look up the subroot associated with the 
+      #   value passed in and will create it if not found
+      # returns: the subroot that holds the value for the given root
+      def get_sub_root(root, value)
+        sym = (value.is_a? Symbol) ? value : value.to_sym
+        root.add sym
+      end
 
   end
 end
