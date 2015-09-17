@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'simplecov', '~> 0.9.2', :require => false, :group => :test
+gem 'minitest', '~> 5.8.0', :require => false, :group => :test
+gem 'simplecov', '~> 0.10.0', :require => false, :group => :test
 gem 'rake', '~> 10.4.2'
-gem 'coveralls', require: false
+gem 'coveralls', '~> 0.8.2', :require => false
